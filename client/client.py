@@ -2,7 +2,7 @@ import socket
 import time
 import psutil  # Make sure to install: pip install psutil
 
-SERVER_IP = "127.0.0.1"  
+SERVER_IP = "10.20.8.12"  
 PORT = 5050
 
 def get_system_stats():
