@@ -4,8 +4,7 @@ import psutil
 import time
 import tkinter as tk
 from tkinter import messagebox
-
-PORT = 5050
+from config import SERVER_PORT
 
 root = tk.Tk()
 root.title("Remote System Monitor Client")
@@ -63,16 +62,20 @@ def connect_to_server():
     global client_socket, connected
     if connected:
         return
+
     server_ip = server_ip_entry.get()
     if not server_ip:
         messagebox.showwarning("Input Required", "Please enter the server IP")
         return
-    client_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+
     try:
-        client_socket.connect((server_ip, PORT))
-        status_label.config(text=f"Connected to server {server_ip}:{PORT}")
+        client_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+        client_socket.connect((server_ip, SERVER_PORT))
         connected = True
+        status_label.config(text=f"Connected to server {server_ip}:{SERVER_PORT}")
+
         threading.Thread(target=send_stats, daemon=True).start()
+
     except Exception as e:
         messagebox.showerror("Connection Error", str(e))
 
@@ -86,10 +89,7 @@ def disconnect():
 frame_buttons = tk.Frame(root)
 frame_buttons.pack(pady=5)
 
-connect_btn = tk.Button(frame_buttons, text="Connect", command=connect_to_server)
-connect_btn.pack(side=tk.LEFT, padx=5)
-
-disconnect_btn = tk.Button(frame_buttons, text="Disconnect", command=disconnect)
-disconnect_btn.pack(side=tk.LEFT, padx=5)
+tk.Button(frame_buttons, text="Connect", command=connect_to_server).pack(side=tk.LEFT, padx=5)
+tk.Button(frame_buttons, text="Disconnect", command=disconnect).pack(side=tk.LEFT, padx=5)
 
 root.mainloop()

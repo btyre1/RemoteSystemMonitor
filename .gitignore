@@ -13,5 +13,6 @@
 # Environment variables file
 .env
 
-server_logs.csv
+# Server logs
+/server/server_logs.csv
 

@@ -4,10 +4,8 @@ import tkinter as tk
 from tkinter.scrolledtext import ScrolledText
 import time
 import csv
+from config import SERVER_HOST, SERVER_PORT, LOG_FILE, BUFFER_SIZE
 
-HOST = "0.0.0.0"
-PORT = 5050
-BUFFER_SIZE = 1024
 active_clients = []
 
 root = tk.Tk()
@@ -34,18 +32,22 @@ def handle_client(conn, addr):
     log(f"NEW CONNECTION: {addr} connected")
     active_clients.append(addr)
     clients_label.config(text=f"Active Clients: {len(active_clients)}")
+
     while True:
         try:
-            data = conn.recv(BUFFER_SIZE).decode('utf-8')
+            data = conn.recv(BUFFER_SIZE).decode()
             if not data:
                 break
+
             log(f"DATA FROM {addr}: {data}")
-            with open("server_logs.csv", "a") as f:
-                writer = csv.writer(f)
-                writer.writerow([addr, data, time.strftime("%Y-%m-%d %H:%M:%S")])
+
+            with open(LOG_FILE, "a") as f:
+                csv.writer(f).writerow([addr, data, time.strftime("%Y-%m-%d %H:%M:%S")])
+
         except Exception as e:
             log(f"ERROR: {e}")
             break
+
     conn.close()
     active_clients.remove(addr)
     clients_label.config(text=f"Active Clients: {len(active_clients)}")
@@ -53,13 +55,14 @@ def handle_client(conn, addr):
 
 def start_server():
     server = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-    server.bind((HOST, PORT))
+    server.bind((SERVER_HOST, SERVER_PORT))
     server.listen()
-    status_label.config(text=f"Server Running on {HOST}:{PORT}")
+
+    status_label.config(text=f"Server Running on {SERVER_HOST}:{SERVER_PORT}")
+
     while True:
         conn, addr = server.accept()
-        thread = threading.Thread(target=handle_client, args=(conn, addr))
-        thread.start()
+        threading.Thread(target=handle_client, args=(conn, addr), daemon=True).start()
 
 threading.Thread(target=start_server, daemon=True).start()
 root.mainloop()
