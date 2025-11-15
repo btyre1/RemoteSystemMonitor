@@ -9,3 +9,9 @@
 
 # macOS clutter
 .DS_Store
+
+# Environment variables file
+.env
+
+server_logs.csv
+
