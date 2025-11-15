@@ -1,2 +1,11 @@
-/venv
-client.zip
+# Ignore virtual environment
+/venv   
+
+# Ignore zip files
+*.zip
+
+# Python cache
+*.pyc
+
+# macOS clutter
+.DS_Store
