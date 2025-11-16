@@ -34,13 +34,17 @@ The server reads the text, shows it in the GUI, and logs it to a CSV file.
 
 # Useful Websites
 
-{Make a list of websites that you found helpful in this project}
-* [Web Site Name](http://url.link.goes.here)
-* [Web Site Name](http://url.link.goes.here)
+* [Client-server model](https://en.wikipedia.org/wiki/Client%E2%80%93server_model)
+* [TCP](https://www.howtogeek.com/190014/htg-explains-what-is-the-difference-between-tcp-and-udp/)
+* [Server Libraries](https://docs.python.org/3.6/library/socketserver.html)
+* [Socket Libraries](https://docs.python.org/3.6/library/socket.html)
+* [Tkinter](https://docs.python.org/3/library/tkinter.html)
+* [Psutil](https://psutil.readthedocs.io/en/latest/)
+* [YouTube Socket Tutorial](https://www.youtube.com/watch?v=3QiPPX-KeSc)
 
 # Future Work
 
-{Make a list of things that you need to fix, improve, and add in the future.}
-* Item 1
-* Item 2
-* Item 3
+* Add some sort of login/auth system
+* Make the UI look way cleaner (Tkinter only goes so far…)
+* Show graphs or charts of CPU/RAM history
+* Add a feature to monitor disk usage, network speed, or temperature sensors.
