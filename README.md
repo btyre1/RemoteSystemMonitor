@@ -12,18 +12,25 @@ Using it is pretty easy: you start the server first, then run the client, type i
 My goal with this software was basically to learn by doing, to understand sockets better, to work with threads without everything crashing, and to manage configuration in a cleaner way using a .env file. Plus, building a GUI with Tkinter made everything feel more like a “real” app.
 
 # Network Communication
+The setup is a classic client/server structure. The server hangs out waiting for clients, and every new connection gets its own thread so the app doesn’t freeze whenever multiple clients are talking at once.
 
-{Describe the architecture that you used (client/server or peer-to-peer)}
+Everything runs over TCP, since I wanted the messages to arrive reliably and in order. By default, everything uses port 5050, but you can change that in the .env file if needed.
 
-{Identify if you are using TCP or UDP and what port numbers are used.}
+The messages themselves are simple text, nothing fancy, just a string that looks like:
 
-{Identify the format of messages being sent between the client and server or the messages sent between two peers.}
+CPU: <percent>% | RAM: <percent>% | Battery: <percent or N/A>
+
+The server reads the text, shows it in the GUI, and logs it to a CSV file.
 
 # Development Environment
 
-{Describe the tools that you used to develop the software}
-
-{Describe the programming language that you used and any libraries.}
+* Python 3.13.5
+* Tkinter for the GUI
+* Socket (built-in Python standard library module)
+* Threading (built-in Python standard library module)
+* Psutil to grab system stats
+* Python-dotenv to handle environment variables
+* VS Code
 
 # Useful Websites
 
