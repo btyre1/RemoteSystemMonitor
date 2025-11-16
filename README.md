@@ -1,14 +1,15 @@
 # Overview
+For this project, I wanted to push myself a bit and build something that felt more like real-world software instead of just another small script. I’ve been trying to get better with networking, multithreading, and writing programs that actually communicate with each other, so I decided to make a simple Remote System Monitoring tool.
 
-{Important!  Do not say in this section that this is college assignment.  Talk about what you are trying to accomplish as a software engineer to further your learning.}
+It’s made up of two pieces:
 
-{Provide a description the networking program that you wrote. Describe how to use your software.  If you did Client/Server, then you will need to describe how to start both.}
+A server app that listens for incoming connections and logs whatever data clients send it.
 
-{Describe your purpose for writing this software.}
+A client app that grabs your system’s CPU, RAM, and battery usage and sends it over to the server in real time.
 
-{Provide a link to your YouTube demonstration.  It should be a 4-5 minute demo of the software running (you will need to show two pieces of software running and communicating with each other) and a walkthrough of the code.}
+Using it is pretty easy: you start the server first, then run the client, type in the server’s IP, press Connect, and your machine starts streaming stats across the network. I really wanted to learn how all those moving parts work together and it definetly was difficult, but worth it.
 
-[Software Demo Video](http://youtube.link.goes.here)
+My goal with this software was basically to learn by doing, to understand sockets better, to work with threads without everything crashing, and to manage configuration in a cleaner way using a .env file. Plus, building a GUI with Tkinter made everything feel more like a “real” app.
 
 # Network Communication
 
