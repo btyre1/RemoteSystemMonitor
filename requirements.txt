@@ -1,3 +1,9 @@
+# AI used to generate this comment below:
+# List of Python packages required for this project
+# Tested with Python 3.13.5
+# Use a virtual environment to avoid conflicts
+# Install with: pip install -r requirements.txt
+
 dotenv==0.9.9
 psutil==7.1.3
 python-dotenv==1.2.1

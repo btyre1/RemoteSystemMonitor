@@ -36,11 +36,9 @@ def log(message):
     Keeping logs in the GUI allows monitoring without terminal output.
     """
     timestamp = time.strftime("%Y-%m-%d %H:%M:%S")
-    try:
-        log_area.insert(tk.END, f"[{timestamp}] {message}\n")
-        log_area.see(tk.END)  # Scroll to the latest message
-    except tk.TclError:
-        pass  # GUI not active during tests
+    log_area.insert(tk.END, f"[{timestamp}] {message}\n")
+    log_area.see(tk.END)  # Scroll to the latest message
+
 
 # --- Client handler ---
 def handle_client(conn, addr):
