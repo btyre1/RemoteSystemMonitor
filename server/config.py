@@ -1,3 +1,5 @@
+# server/config.py
+
 # Config file for environment-driven configuration
 # Avoid hardcoding sensitive or changeable settings
 
